@@ -1,4 +1,4 @@
-# Prompt
+# Drill 1
 Create three files: **my.h**, **my.cpp**, and **use.cpp**. The header file **my.h** contains
 
 * extern int foo;
