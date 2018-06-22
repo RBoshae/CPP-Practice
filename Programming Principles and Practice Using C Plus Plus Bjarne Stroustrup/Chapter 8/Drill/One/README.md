@@ -1,9 +1,9 @@
 # Prompt
 Create three files: **my.h**, **my.cpp**, and **use.cpp**. The header file **my.h** contains
 
-*extern int foo;
-*void print_foo();
-*void print(int);
+* extern int foo;
+* void print_foo();
+* void print(int);
 
 The source code file **my.cpp #includes my.h** and **std_lib_facilities.h**, defines **print_foo()** to print the value of **foo** using **cout**, and **print(int i)** to print the value of **i** using **cout**.
 
