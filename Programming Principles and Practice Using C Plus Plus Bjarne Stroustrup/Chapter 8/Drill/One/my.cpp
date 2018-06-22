@@ -1,6 +1,12 @@
 #include "my.h"
 #include "std_lib_facilities"
 
-// TODO: define print_foo() to print the value of foo using cout.
+// print_foo() to prints the value of foo using cout.
+void print_foo(){
+  cout << foo << endl;
+};
 
-// TODO: define print(int i) to print the value of i using cout
+// print(int i) to print the value of i using cout
+void print_foo(int i){
+  cout << i << endl;
+}
