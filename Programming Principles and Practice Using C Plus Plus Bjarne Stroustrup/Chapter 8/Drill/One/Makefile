@@ -1,5 +1,6 @@
 output: use.o my.o
 		g++ use.o my.o -o output
+
 main.o: use.cpp
 		g++ -c use.cpp
 
