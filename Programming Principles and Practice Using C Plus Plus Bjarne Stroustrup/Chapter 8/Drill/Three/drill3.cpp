@@ -1,5 +1,30 @@
-int Main()
-{
+#include <iostream>
+// Each namespace needs to define a variable called var and a function
+// called print() that outputs the appropriate var using cout.
+
+namespace X {
+  int var;
+
+  void print() {
+      std::cout << var << std::endl;
+  }
+}
+
+namespace Y {
+  int var;
+  void print() {
+    std::cout << var << std::endl;
+  }
+}
+
+namespace Z {
+  int var;
+  void print() {
+    std::cout << var << std::endl;
+  }
+}
+
+int main() {
   X::var = 7;
   X::print();   // print X's var
   using namespace Y;
@@ -12,5 +37,5 @@ int Main()
     print ();   // print Z's var
   }
   print();      // print Y's var
-  X:: print();  // print X's var
+  X::print();  // print X's var
 }
