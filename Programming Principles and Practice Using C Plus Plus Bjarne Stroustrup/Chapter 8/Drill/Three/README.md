@@ -1,4 +1,4 @@
-# Drill 3
+# Drill 1
 
 Write a program using a single file containing three namespaces X, Y, and Z so that the following Main() works correctly:
 ```
