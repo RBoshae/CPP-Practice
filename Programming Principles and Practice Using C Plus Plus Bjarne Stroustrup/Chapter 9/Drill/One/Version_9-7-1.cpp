@@ -42,7 +42,7 @@ Date::Date(int y, Month m, int d) {
 void Date::add_day(int n) {
   // increase by n days
 
-  // Modulo hybrid version.
+  // For loop version.
   d += n;
   for (int i = 0; i < n; i++) {
     d++;
