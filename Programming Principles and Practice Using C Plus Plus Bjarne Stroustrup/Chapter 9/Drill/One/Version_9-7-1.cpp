@@ -48,7 +48,7 @@ void Date::add_day(int n) {
     d++;
     if (d>31){
       d = 1;
-      ++m;
+      m = (m==dec) ? jan : Date::Month(m+1);;
       if (m==Date::jan) ++y;
     }
   }
@@ -60,11 +60,6 @@ ostream& operator<<(ostream& os, Date& d) {
   return os << '(' << d.year()
             << ',' << d.month()
             << ',' << d.day() << ')';
-}
-
-Date::Month Date::operator++(Month& m){
-  m = (m==dec) ? jan : Date::Month(m+1);
-  return m;
 }
 
 // Month& operator+=(Month& m, int n){
