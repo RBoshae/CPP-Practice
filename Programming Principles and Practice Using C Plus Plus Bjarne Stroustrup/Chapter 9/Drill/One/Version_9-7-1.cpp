@@ -43,12 +43,11 @@ void Date::add_day(int n) {
   // increase by n days
 
   // For loop version.
-  d += n;
   for (int i = 0; i < n; i++) {
     d++;
     if (d>31){
       d = 1;
-      m = (m==dec) ? jan : Date::Month(m+1);;
+      m = (m==dec) ? jan : Date::Month(m+1); // month wrap around
       if (m==Date::jan) ++y;
     }
   }

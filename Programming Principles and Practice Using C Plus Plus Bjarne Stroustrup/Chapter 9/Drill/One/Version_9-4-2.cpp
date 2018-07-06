@@ -44,15 +44,25 @@ void init_day(Date& dd, int y, int m, int d) {
 void add_day(Date& dd, int n) {
   // increase dd by n days
 
-  // Decided to implement the modulo version.
-  dd.d += n;
-  if (dd.d > 31) {
-    dd.m += dd.d / 31;
-    dd.d = dd.d%31;
-  }
-  if (dd.m > 12) {
-    dd.y += dd.m/12;
-    dd.m = dd.m%12;
+  // // Decided to implement the modulo version.
+  // dd.d += n;
+  // if (dd.d > 31) {
+  //   dd.m += dd.d / 31;
+  //   dd.d = dd.d%31;
+  // }
+  // if (dd.m > 12) {
+  //   dd.y += dd.m/12;
+  //   dd.m = dd.m%12;
+  // }
+
+  // For loop version.
+  for (int i = 0; i < n; i++) {
+    dd.d++;
+    if (dd.d>31){
+      dd.d = 1;
+      dd.m = (dd.m==12) ? 1 : dd.m+1; // month wrap around
+      if (dd.m==1) ++dd.y;
+    }
   }
 
 }

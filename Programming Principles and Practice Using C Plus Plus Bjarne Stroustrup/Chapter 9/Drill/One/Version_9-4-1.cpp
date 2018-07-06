@@ -30,31 +30,18 @@ void init_day(Date& dd, int y, int m, int d) {
 
 void add_day(Date& dd, int n) {
   // increase dd by n days
-  // NOTE: Code could be optimized here by using modulo math
-  // for (int i = 0; i < n; i++) {
-  //   if (dd.d < 31) {
-  //     dd.d++;
-  //   } else {
-  //     dd.d = 1;
-  //     if (dd.m < 12) {
-  //       dd.m++;
-  //     } else {
-  //       dd.m = 1;
-  //       dd.y++;
-  //     }
-  //   }
-  // }
 
-  // Decided to implement the modulo version.
-  dd.d += n;
-  if (dd.d > 31) {
-    dd.m += dd.d / 31;
-    dd.d = dd.d%31;
+  // For loop version.
+  for (int i = 0; i < n; i++) {
+    dd.d++;
+    if (dd.d>31){
+      dd.d = 1;
+      dd.m = (dd.m==12) ? 1 : dd.m+1; // month wrap around
+      if (dd.m==1) ++dd.y;
+    }
   }
-  if (dd.m > 12) {
-    dd.y += dd.m/12;
-    dd.m = dd.m%12;
-  }
+
+
 
 }
 

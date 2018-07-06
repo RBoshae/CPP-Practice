@@ -33,15 +33,25 @@ Date::Date(int y, int m, int d) {
 void Date::add_day(int n) {
   // increase dd by n days
 
-  // Decided to implement the modulo version.
-  d += n;
-  if (d > 31) {
-    m += d / 31;
-    d = d%31;
-  }
-  if (m > 12) {
-    y += m/12;
-    m = m%12;
+  // // Decided to implement the modulo version. // NOTE: not correct
+  // d += n;
+  // if (d > 31) {
+  //   m += d / 31;
+  //   d = d%31;
+  // }
+  // if (m > 12) {
+  //   y += m/12;
+  //   m = m%12;
+  // }
+
+  // For loop version.
+  for (int i = 0; i < n; i++) {
+    d++;
+    if (d>31){
+      d = 1;
+      m = (m==12) ? 1 : m+1; // month wrap around
+      if (m==1) ++y;
+    }
   }
 
 }
