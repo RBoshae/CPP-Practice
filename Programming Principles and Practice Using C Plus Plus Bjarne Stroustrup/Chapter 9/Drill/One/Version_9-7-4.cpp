@@ -22,19 +22,22 @@ class Date {
       jan=1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
     };
 
-    Date(int y, Month m, Year d); // check for valid date and initialize
-    void add_day(int n);       // increase the Date by n days.
-    int month() {return m;}
-    int day() {return d;}
-    int year() {return y.year();}
+    Date(int y, Month m, int d); // check for valid date and initialize
 
+    int day() const {return d;}
+    Month month() const {return m;}
+    int year() const {return y;}
+
+    void add_day(int n);         // increase the Date by n days.
+    void add_month(int n);       // increase the Date by n months.
+    void add_year(int n);        // increase the Date by n days.
   private:
-    Year y;                  // year
+    int y;                  // year
     Month m;
-    int  d;                 // day
+    int  d;                 // day of month
 };
 
-Date::Date(int y, Month m, Year d) {
+Date::Date(int y, Month m, int d) {
   // check that (y,m,d) is a valid Date and initialize
   if (m > 0 && m <= 12) {
     if (d > 0 && d <= 31) {
@@ -45,25 +48,39 @@ Date::Date(int y, Month m, Year d) {
     }
   }
   cout << "Invalid date." << endl;
-  this->y = 0; this->m = 0; this->d = 0;
+  this->y = 0; this->m = jan; this->d = 0;
   return;
 }; // check for valid date and initialize
 
 
 void Date::add_day(int n) {
-  // increase dd by n days
+  // increase by n days
 
-  // Decided to implement the modulo version.
-  d += n;
-  if (d > 31) {
-    m += d / 31;
-    d = d%31;
-  }
-  if (m > 12) {
-    y += m/12;
-    m = m%12;
+  // For loop version.
+  for (int i = 0; i < n; i++) {
+    d++;
+    if (d>31){
+      d = 1;
+      m = (m==dec) ? jan : Date::Month(m+1); // month wrap around
+      if (m==Date::jan) ++y;
+    }
   }
 
+}
+
+void Date::add_month(int n) {
+  // increase by n months
+
+  // For loop version.
+  for (int i = 0; i < n; i++) {
+    m = (m==dec) ? jan : Date::Month(m+1); // month wrap around
+    if (m==Date::jan) ++y;
+  }
+}
+
+void Date::add_year(int n) {
+  // increase by n years
+  y+=n;
 }
 
 ostream& operator<<(ostream& os, Date& d) {
@@ -75,7 +92,7 @@ ostream& operator<<(ostream& os, Date& d) {
 
 int main() {
   // Date today(2018,7,5);  // colloquial style
-  Date today =  Date(2018,7,5);     // verbose styles
+  Date today =  Date(1978,Date::jun,28);     // verbose styles
   cout << today << endl;
 
   Date tomorrow = today;
@@ -86,6 +103,6 @@ int main() {
   nextYear.add_day(365);
   cout << nextYear << endl;
 
-  Date invalid_date(1900, -5, 100);
+  Date invalid_date(1900, Date::jan, 100);
   cout << invalid_date << endl;
 }
